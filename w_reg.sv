@@ -1,7 +1,7 @@
-module w_reg (input logic [16:0] ans,
+module w_reg (input logic [8:0] ans,
   input logic reset, clk,
   output logic carry,
-  output logic [15:0] w);
+  output logic [7:0] w);
 
   always @ (posedge clk or posedge reset) begin
     if (reset) begin

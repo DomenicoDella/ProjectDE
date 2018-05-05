@@ -1,4 +1,4 @@
-module pcounter (output logic [15:0] counter,
+module pcounter (output logic [16:0] counter,
   input logic clk, reset);
 
   always @ (posedge clk or posedge reset) begin

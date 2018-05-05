@@ -1,7 +1,8 @@
 module testbench ();
   logic clk, reset, carry;
   logic [3:0] inst;
-  logic [7:0] counter, b;
+  logic [16:0] counter;
+  logic [7:0] b;
   wire [8:0] ans;
   wire [7:0] w;
 
