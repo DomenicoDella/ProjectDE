@@ -1,8 +1,8 @@
 module alu (input logic [3:0] inst,
   input logic reset,
-  input logic [15:0] b, a,
-  output logic [16:0] ans);
-  wire [15:0] a0;
+  input logic [7:0] b, a,
+  output logic [8:0] ans);
+  wire [7:0] a0;
 
   //a_reg u2 (.reset(reset), .clk(clk), .carry(carry), .a(a), .ans(ans));
 
@@ -21,6 +21,6 @@ module alu (input logic [3:0] inst,
       4'b1010:  ans <= (a | b); //iorab 10
       default: ans <= ans;
     endcase
-    //w <= ans[15:0];
+    //w <= ans[7:0];
   end
 endmodule //alu

@@ -1,9 +1,9 @@
 module testbench ();
   logic clk, reset, carry;
   logic [3:0] inst;
-  logic [15:0] counter, b;
-  wire [16:0] ans;
-  wire [15:0] w;
+  logic [7:0] counter, b;
+  wire [8:0] ans;
+  wire [7:0] w;
 
 
   pcounter u0 (.clk(clk), .reset(reset), .counter(counter));
