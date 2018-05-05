@@ -1,5 +1,5 @@
 module testbench ();
-  logic clk, reset, carry;
+  logic clk, reset, carry, d;
   logic [3:0] inst;
   logic [16:0] counter;
   logic [7:0] b;
@@ -9,7 +9,7 @@ module testbench ();
 
   pcounter u0 (.clk(clk), .reset(reset), .counter(counter));
   alu u1 (.inst(inst), .reset(reset), .ans(ans), .b(b), .a(w));
-  w_reg u2 (.reset(reset), .clk(clk), .carry(carry), .w(w), .ans(ans));
+  w_reg u2 (.reset(reset), .clk(clk), .carry(carry), .w(w), .ans(ans), .d(d));
 
   initial begin
     $display("\nclk  \treset \tcounter \tinst \t    b \t    w \t     ans ");
@@ -18,6 +18,7 @@ module testbench ();
     clk = 0;
     reset = 0;
     b = 0;
+    d = 0;
     //w = 0;
     inst = 0;
 
