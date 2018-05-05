@@ -1,6 +1,6 @@
 //Este archivo organiza los modulos
 //para correr:
-//iverilog -g2012 runfile.v
+//iverilog -g2012 runfile.sv
 //vvp a.out
 //-----------------------------------------------------
 //Se deben incluir todos los modulos
@@ -9,4 +9,5 @@
 `include "program_counter.sv" //program_counter
 `include "testbench.sv" //testbench
 `include "alu.sv" //alu
-`include "w_reg.sv" //ans to w 
+`include "w_reg.sv" //w_reg
+`include "decode.sv" //decode
