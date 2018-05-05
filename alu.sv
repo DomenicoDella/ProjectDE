@@ -1,24 +1,24 @@
 module alu (input logic [3:0] inst,
   input logic reset,
-  input logic [15:0] f, w,
+  input logic [15:0] b, a,
   output logic [16:0] ans);
-  wire [15:0] w0;
+  wire [15:0] a0;
 
-  //w_reg u2 (.reset(reset), .clk(clk), .carry(carry), .w(w), .ans(ans));
+  //a_reg u2 (.reset(reset), .clk(clk), .carry(carry), .a(a), .ans(ans));
 
-  always @ (inst or f or w) begin
+  always @ (inst or b or a) begin
     case (inst)
-      4'b0000:  ans <= f; //movf 0
-      4'b0001:  ans <= w; //movwf 1
-      4'b0010:  ans <= w + f; //addwf 2
-      4'b0011:  ans <= w - f; //subtwf 3
-      4'b0100:  ans <= (w & f); //andwf 4
-      4'b0101:  ans <= f + 1; //incf 5
-      4'b0110:  ans <= f - 1; //subf 6
-      4'b0111:  ans <= (w ^ f); //xorwf 7
+      4'b0000:  ans <= b; //movb 0
+      4'b0001:  ans <= a; //movab 1
+      4'b0010:  ans <= a + b; //addab 2
+      4'b0011:  ans <= a - b; //subtab 3
+      4'b0100:  ans <= (a & b); //andab 4
+      4'b0101:  ans <= b + 1; //incb 5
+      4'b0110:  ans <= b - 1; //subb 6
+      4'b0111:  ans <= (a ^ b); //xorab 7
       4'b1000:  ans <= ans; //nop 8
-      4'b1001:  ans <= 0; //clear w 9
-      4'b1010:  ans <= (w | f); //iorwf 10
+      4'b1001:  ans <= 0; //clear a 9
+      4'b1010:  ans <= (a | b); //iorab 10
       default: ans <= ans;
     endcase
     //w <= ans[15:0];
