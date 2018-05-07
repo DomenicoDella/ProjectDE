@@ -28,7 +28,7 @@ module testbench ();
 
     #5 b = 10;
     #30 inst_reg = 8'b00011111;
-    #10 inst_reg = 8'b00000000;
+    #10 inst_reg = 8'b00111001;
     //w = 25;
   end
 
