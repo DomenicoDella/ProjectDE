@@ -7,7 +7,7 @@ module w_reg (input logic [8:0] ans,
     if (reset) begin
       w <= 0;
     end else if (d == 0) begin
-      w <= ans[15:0];
+      w <= ans[7:0];
     end
   end
 endmodule //w_reg
