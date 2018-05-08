@@ -10,7 +10,7 @@ module decode (input logic [7:0] inst_reg,
         4'b0111: inst <= 2; //ADDWF
         4'b0101: inst <= 4; //ANDWF
         4'b0001: inst <= 9; //CLEAR
-        //4'b1001: inst <= ;  //COMPLEMENT
+        4'b1001: inst <= 12;  //COMPLEMENT
         4'b0011: inst <= 6; //DECF
         //4'b1011: inst <= ; //DECFSZ
         4'b1010: inst <= 5; //INCF
@@ -31,6 +31,10 @@ module decode (input logic [7:0] inst_reg,
     end else if (inst_reg [7:6] == 11) begin
       d <= 0; //define destination as w
       switch_a_m <= 0; //enable k on alu_mux
+      case (inst_reg[5:2])
+        4'b111x: inst <= 0;
+        default: inst <= 8;
+      endcase
 
     end else if (inst_reg [7:6] == 10) begin
 

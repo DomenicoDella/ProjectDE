@@ -1,7 +1,7 @@
 module testbench ();
   logic clk, reset, carry;
   wire [3:0] inst;
-  logic [16:0] counter;
+  logic [12:0] counter;
   logic [7:0] f, k, inst_reg;
   wire [8:0] ans;
   wire [7:0] w, b;
@@ -34,11 +34,13 @@ module testbench ();
     #10 inst_reg = 8'b00001001;
     #10 inst_reg = 8'b00000101;
     #10 inst_reg = 8'b00000111;
+    f = 0;
+    #10 inst_reg = 8'b00100101;
     //w = 25;
   end
 
   always begin
-    #5 clk = ~clk;
+    #4 clk = ~clk;
   end
   initial begin
     #250 $finish;

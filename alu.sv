@@ -8,8 +8,8 @@ module alu (input logic [3:0] inst,
 
   always @ (inst or b or a) begin
     case (inst)
-      4'b0000:  ans <= b; //let go b 0
-      4'b0001:  ans <= a; //let go a 1
+      4'b0000:  ans <= b; //pass b 0
+      4'b0001:  ans <= a; //pass a 1
       4'b0010:  ans <= a + b; //add a b 2
       4'b0011:  ans <= a - b; //sub a b 3
       4'b0100:  ans <= (a & b); //and a b 4
@@ -20,6 +20,7 @@ module alu (input logic [3:0] inst,
       4'b1001:  ans <= 0; //clear a 9
       4'b1010:  ans <= (a | b); //ior a b 10
       4'b1011:  ans <= {b[3:0], b[7:4]}; //swapnible 11
+      4'b1100:  ans <= ~b; //complemet 12
       default: ans <= ans;
     endcase
     //w <= ans[7:0];
