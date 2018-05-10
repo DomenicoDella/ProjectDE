@@ -11,4 +11,3 @@ module w_reg (input logic [8:0] ans,
     end
   end
 endmodule //w_reg
-//pruega
