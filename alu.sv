@@ -1,8 +1,8 @@
 module alu (input logic [3:0] inst,
   input logic reset,
   input logic [7:0] b, a,
+  output logic carry,
   output logic [8:0] ans);
-
 
   //a_reg u2 (.reset(reset), .clk(clk), .carry(carry), .a(a), .ans(ans));
 
@@ -23,6 +23,6 @@ module alu (input logic [3:0] inst,
       4'b1100:  ans <= ~b; //complemet 12
       default: ans <= ans;
     endcase
-    //w <= ans[7:0];
+    carry <= ans[8];
   end
 endmodule //alu
