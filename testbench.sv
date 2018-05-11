@@ -15,13 +15,13 @@ module testbench ();
   alu_mux u4(.f(f), .k(k), .b(b), .switch_a_m(switch_a_m));
 
   initial begin
-    $display("\nclk  \treset \tcounter \tinst \t   b \t   w \t   ans \t c");
-    $monitor("%b \t%b \t%d \t\t%b \t%d \t%d \t%d \t%d ", clk, reset, counter, inst, b, w, ans, carry);
+    $display("\ntimer  \treset \tcounter \tinst \t   b \t   w \t   ans \t c \t inst_reg");
+    $monitor("%d \t%b \t%d \t\t%b \t%d \t%d \t%d \t%b \t%b", $time, reset, counter, inst, b, w, ans, carry, inst_reg);
 
     clk = 0;
     reset = 0;
     f = 0;
-    k = 0;
+    k = 1;
     //w = 0;
     inst_reg = 8'b00011101;
 
@@ -36,11 +36,13 @@ module testbench ();
     #10 inst_reg = 8'b00000111;
     f = 0;
     #10 inst_reg = 8'b00100101;
+    #10 inst_reg = 8'b11000000;
+    #10 inst_reg = 8'b11111000;
     //w = 25;
   end
 
   always begin
-    #4 clk = ~clk;
+    #5 clk = ~clk;
   end
   initial begin
     #250 $finish;

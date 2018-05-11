@@ -11,7 +11,7 @@ module alu (input logic [3:0] inst,
       4'b0000:  ans <= b; //pass b 0
       4'b0001:  ans <= a; //pass a 1
       4'b0010:  ans <= a + b; //add a b 2
-      4'b0011:  ans <= a - b; //sub a b 3
+      4'b0011:  ans <= b - a; //sub a b 3
       4'b0100:  ans <= (a & b); //and a b 4
       4'b0101:  ans <= b + 1; //inc b 5
       4'b0110:  ans <= b - 1; //decrease b 6
