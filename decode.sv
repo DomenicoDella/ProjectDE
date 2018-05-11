@@ -36,7 +36,7 @@ module decode (input logic [7:0] inst_reg,
         4'b01xx: inst <= 14; //BSF ;
         //4'b10xx: inst <= ; // ;
         //4'b11xx: inst <= ; // ;
-        default: 1;
+        default: inst <= 1;
       endcase
 
     end else if (inst_reg [7:6] == 2'b11) begin  //literal operations

@@ -1,4 +1,4 @@
-module w_reg (input logic [8:0] ans,
+module w_reg (input logic [7:0] ans,
   input logic reset, clk, d,
   output logic [7:0] w);
 

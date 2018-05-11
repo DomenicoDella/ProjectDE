@@ -3,19 +3,19 @@ module testbench ();
   wire [3:0] inst;
   logic [12:0] counter;
   logic [7:0] f, k, inst_reg;
-  wire [8:0] ans;
+  wire [7:0] ans;
   wire [7:0] w, b;
   wire d, switch_a_m;
 
 
   pcounter u0 (.clk(clk), .reset(reset), .counter(counter));
-  alu u1 (.inst(inst), .reset(reset), .carry(carry), .ans(ans), .b(b), .a(w));
+  alu u1 (.inst(inst), .reset(reset), .carry(carry), .ansf(ans), .b(b), .a(w));
   w_reg u2 (.reset(reset), .clk(clk), .w(w), .ans(ans), .d(d));
   decode u3(.inst_reg(inst_reg), .d(d), .inst(inst), .switch_a_m(switch_a_m));
   alu_mux u4(.f(f), .k(k), .b(b), .switch_a_m(switch_a_m));
 
   initial begin
-    $display("\ntimer  \treset \tcounter \tinst \t   b \t   w \t   ans \t c \t inst_reg");
+    $display("\n\t\ttimer  \treset \tcounter \tinst \t   b \t   w \t   ans \t c \t inst_reg");
     $monitor("%d \t%b \t%d \t\t%b \t%d \t%d \t%d \t%b \t%b", $time, reset, counter, inst, b, w, ans, carry, inst_reg);
 
     clk = 0;

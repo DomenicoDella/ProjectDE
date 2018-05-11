@@ -2,8 +2,8 @@ module alu (input logic [3:0] inst,
   input logic reset,
   input logic [7:0] b, a,
   output logic carry,
-  output logic [8:0] ans);
-
+  output logic [7:0] ansf);
+  logic [8:0] ans;
   //a_reg u2 (.reset(reset), .clk(clk), .carry(carry), .a(a), .ans(ans));
 
   always @ (inst or b or a) begin
@@ -25,6 +25,7 @@ module alu (input logic [3:0] inst,
       4'b1110:  ; //set bit 14
       default: ans <= ans;
     endcase
-    carry <= ans[8];
   end
+  assign ansf = ans;
+  assign carry = ans[8];
 endmodule //alu
