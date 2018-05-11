@@ -24,26 +24,36 @@ module decode (input logic [7:0] inst_reg,
         4'b0010: inst <= 3; //SUBWF
         4'b1110: inst <= 11; //SWAPBWF
         4'b0110: inst <= 7; //XORWF
-        default: inst <= 8;
+        default: inst <= 1;
       endcase
 
     end else if (inst_reg [7:6] == 2'b01) begin //bit oriented operations
-        bit_number = inst_reg [3:1];
+      d <= inst_reg[1]; //define destination as f
+      switch_a_m <= 1; //enable f on alu_mux
+      bit_number = inst_reg [3:1];
+      casex (inst_reg[5:2])
+        4'b00xx: inst <= 13; //BCF ;
+        4'b01xx: inst <= 14; //BSF ;
+        //4'b10xx: inst <= ; // ;
+        //4'b11xx: inst <= ; // ;
+        default: 1;
+      endcase
+
     end else if (inst_reg [7:6] == 2'b11) begin  //literal operations
       d <= 0; //define destination as w
       switch_a_m <= 0; //enable k on alu_mux
       casex (inst_reg[5:2])
-        4'b00xx: inst <= 0; //MOVLW
-        4'b1000: inst <= 10; //IORLW
-        4'b1001: inst <= 4; //ANDWL
-        4'b1010: inst <= 7; //XORWL
-        4'b110x: inst <= 3; //SUBWL
-        4'b111x: inst <= 2; //ADDWL
-        default: inst <= 8;
-      endcase
+      4'b00xx: inst <= 0; //MOVLW
+      4'b1000: inst <= 10; //IORLW
+      4'b1001: inst <= 4; //ANDWL
+      4'b1010: inst <= 7; //XORWL
+      4'b110x: inst <= 3; //SUBWL
+      4'b111x: inst <= 2; //ADDWL
+      default: inst <= 1;
+    endcase
 
-    end else if (inst_reg [7:6] == 2'b10) begin
+  end else if (inst_reg [7:6] == 2'b10) begin
 
-    end
   end
+end
 endmodule //decode

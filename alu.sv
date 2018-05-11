@@ -21,6 +21,8 @@ module alu (input logic [3:0] inst,
       4'b1010:  ans <= (a | b); //ior a b 10
       4'b1011:  ans <= {b[3:0], b[7:4]}; //swapnible 11
       4'b1100:  ans <= ~b; //complemet 12
+      4'b1101:  ; //clear bit 13
+      4'b1110:  ; //set bit 14
       default: ans <= ans;
     endcase
     carry <= ans[8];
