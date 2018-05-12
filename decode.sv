@@ -28,7 +28,7 @@ module decode (input logic [7:0] inst_reg,
       endcase
 
     end else if (inst_reg [7:6] == 2'b01) begin //bit oriented operations
-      d <= inst_reg[1]; //define destination as f
+      d <= 1; //define destination as f
       switch_a_m <= 1; //enable f on alu_mux
       bit_number = inst_reg [3:1];
       casex (inst_reg[5:2])

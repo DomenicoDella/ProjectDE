@@ -1,10 +1,12 @@
-module alu (input logic [3:0] inst,
-  input logic reset,
+module alu (input logic reset,
+  input logic [2:0] bit_number,
+  input logic [3:0] inst,
   input logic [7:0] b, a,
   output logic carry,
   output logic [7:0] ansf);
+
   logic [8:0] ans;
-  //a_reg u2 (.reset(reset), .clk(clk), .carry(carry), .a(a), .ans(ans));
+  logic [7:0] clear;
 
   always @ (inst or b or a) begin
     case (inst)
