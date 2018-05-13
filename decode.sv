@@ -32,8 +32,8 @@ module decode (input logic [7:0] inst_reg,
       switch_a_m <= 1; //enable f on alu_mux
       bit_number = inst_reg [3:1];
       casex (inst_reg[5:2])
-        4'b00xx: inst <= 13; //BCF ;
-        4'b01xx: inst <= 14; //BSF ;
+        4'b00xx: inst <= 14; //BCF ;
+        4'b01xx: inst <= 13; //BSF ;
         //4'b10xx: inst <= ; // ;
         //4'b11xx: inst <= ; // ;
         default: inst <= 1;
