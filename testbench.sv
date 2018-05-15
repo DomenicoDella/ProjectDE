@@ -19,7 +19,7 @@ module testbench ();
 
   initial begin
     $display("\n\t\ttimer  \treset \tcounter \tinst \t  b \t  w \t  ans \t c \t inst_reg");
-    $monitor("%d \t%b \t%d \t\t%b \t%d \t%d \t%d \t%b \t%b \t%b", $time,
+    $monitor("%d \t%b \t%d \t\t%b \t%d \t%d \t%b \t%b \t%b \t%b", $time,
     reset, counter, inst, b, w, ans, carry, inst_reg, bit_number);
 
     clk = 0;
@@ -42,9 +42,12 @@ module testbench ();
     #10 inst_reg = 8'b00100101;
     #10 inst_reg = 8'b11000000;
     #10 inst_reg = 8'b11111000;
-    #10 inst_reg = 8'b01010100;
-    #5 f = 4;
-    #10 inst_reg = 8'b01000100;
+    #10 inst_reg = 8'b01010010;
+    #5 f = 8'b11111111;
+    #10 inst_reg = 8'b01000010;
+    #5 f = 1;
+    #10 inst_reg = 8'b00110100;
+    #10 inst_reg = 8'b00110000;
     //w = 25;
   end
 

@@ -19,8 +19,8 @@ module decode (input logic [7:0] inst_reg,
         4'b0100: inst <= 10; //IORWF
         4'b1000: inst <= 0; //MOVF
         4'b0000: inst <= 1; //MOVWF & NOP
-        //4'b1101: inst <= ; //RLF
-        //4'b1100: inst <= ; //RRF
+        4'b1101: inst <= 8; //RLF
+        4'b1100: inst <= 15; //RRF
         4'b0010: inst <= 3; //SUBWF
         4'b1110: inst <= 11; //SWAPBWF
         4'b0110: inst <= 7; //XORWF

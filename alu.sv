@@ -8,7 +8,7 @@ module alu (input logic reset,
   logic [8:0] ans;
   logic [7:0] set;
 
-  always @ (inst or b or a) begin
+  always @ (inst or b or a or bit_number) begin
 
     case (bit_number) //genera el byte para operar en BiteOP
       0: set <= 8'b00000001;
@@ -32,13 +32,14 @@ module alu (input logic reset,
       4'b0101:  ans <= b + 1; //inc b 5
       4'b0110:  ans <= b - 1; //decrease b 6
       4'b0111:  ans <= (a ^ b); //xor a b 7
-      4'b1000:  ans <= ans; //nop 8
+      4'b1000:  ans <= {b[6:0], carry}; //rotate left 8
       4'b1001:  ans <= 0; //set a 9
       4'b1010:  ans <= (a | b); //ior a b 10
       4'b1011:  ans <= {b[3:0], b[7:4]}; //swapnible 11
       4'b1100:  ans <= ~b; //complemet 12
       4'b1101:  ans <= (b | set); //set bit 13
       4'b1110:  ans <= (b & ~set); //clear bit 14
+      4'b1111:  ans <= {carry, b[6:0]}; //rotate right 15
       default: ans <= ans;
     endcase
   end
