@@ -1,11 +1,15 @@
 module testbench ();
   logic clk, reset, carry;
-  wire [3:0] inst;
   logic [12:0] counter;
-  logic [7:0] f, k, inst_reg;
+  logic [7:0] f;
+  logic [13:0] opcode;
+
+
   wire d, switch_a_m;
+  wire [3:0] inst;
   wire [2:0] bit_number;
-  wire [7:0] w, b, ans;
+  wire [6:0] address;
+  wire [7:0] w, b, ans, inst_reg, k;
 
 
 
@@ -16,38 +20,31 @@ module testbench ();
   decode u3(.inst_reg(inst_reg), .d(d), .inst(inst), .bit_number(bit_number),
   .switch_a_m(switch_a_m));
   alu_mux u4(.f(f), .k(k), .b(b), .switch_a_m(switch_a_m));
+  inst_reg u5 (.k(k), .out_decode(inst_reg), .rom(opcode), .reset(reset),
+  .clk(clk), .address(address));
+
 
   initial begin
-    $display("\n\t\ttimer  \treset \tcounter \tinst \t  b \t  w \t  ans \t c \t inst_reg");
-    $monitor("%d \t%b \t%d \t\t%b \t%d \t%d \t%b \t%b \t%b \t%b", $time,
-    reset, counter, inst, b, w, ans, carry, inst_reg, bit_number);
+    $display("\n\t\ttimer  \treset \tcounter \tinst \t  b \t  w \t  ans \t d \t opcode");
+    $monitor("%d \t%b \t%d \t\t%b \t%d \t%d \t%d \t%b \t%b \t%b", $time,
+    reset, counter, inst, b, w, ans, d, opcode, inst_reg);
 
     clk = 0;
     reset = 0;
     f = 0;
-    k = 1;
     //w = 0;
-    inst_reg = 8'b00011101;
+    opcode = 14'b00011100000000;
 
     #1 reset = 1;
     #1 reset = 0;
 
     #5 f = 10;
-    #30 inst_reg = 8'b00011111;
-    #10 inst_reg = 8'b00111001;
-    #10 inst_reg = 8'b00001001;
-    #10 inst_reg = 8'b00000101;
-    #10 inst_reg = 8'b00000111;
+    #5 opcode = 14'b11000000000011;
+    f = 1;
+    #5 opcode = 14'b01000000000011;
     f = 0;
-    #10 inst_reg = 8'b00100101;
-    #10 inst_reg = 8'b11000000;
-    #10 inst_reg = 8'b11111000;
-    #10 inst_reg = 8'b01010010;
-    #5 f = 8'b11111111;
-    #10 inst_reg = 8'b01000010;
-    #5 f = 1;
-    #10 inst_reg = 8'b00110100;
-    #10 inst_reg = 8'b00110000;
+    #5 opcode = 14'b01010100000011;
+
     //w = 25;
   end
 
