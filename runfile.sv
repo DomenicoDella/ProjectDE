@@ -12,4 +12,5 @@
 `include "w_reg.sv" //w_reg
 `include "decode.sv" //decode
 `include "alu_mux.sv" //alu mux in b
-`include "inst_reg.sv"
+`include "inst_reg.sv" //inst reg
+`include "rom.sv" //read only memory 

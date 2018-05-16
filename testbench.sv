@@ -1,15 +1,14 @@
 module testbench ();
   logic clk, reset, carry;
-  logic [12:0] counter;
   logic [7:0] f;
-  logic [13:0] opcode;
-
 
   wire d, switch_a_m;
   wire [3:0] inst;
   wire [2:0] bit_number;
   wire [6:0] address;
   wire [7:0] w, b, ans, inst_reg, k;
+  wire [10:0] counter;
+  wire [13:0] opcode;
 
 
 
@@ -22,6 +21,7 @@ module testbench ();
   alu_mux u4(.f(f), .k(k), .b(b), .switch_a_m(switch_a_m));
   inst_reg u5 (.k(k), .out_decode(inst_reg), .rom(opcode), .reset(reset),
   .clk(clk), .address(address));
+  rom u6 (.counter(counter), .opcode(opcode));
 
 
   initial begin
@@ -32,18 +32,11 @@ module testbench ();
     clk = 0;
     reset = 0;
     f = 0;
-    //w = 0;
-    opcode = 14'b00011100000000;
-
     #1 reset = 1;
     #1 reset = 0;
-
     #5 f = 10;
-    #5 opcode = 14'b11000000000011;
-    f = 1;
-    #5 opcode = 14'b01000000000011;
-    f = 0;
-    #5 opcode = 14'b01010100000011;
+    #5 f = 1;
+    #5 f = 0;
 
     //w = 25;
   end
