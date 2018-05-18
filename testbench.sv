@@ -31,13 +31,12 @@ module testbench ();
 
     clk = 0;
     reset = 0;
-    f = 0;
-    #1 reset = 1;
-    #1 reset = 0;
-    #5 f = 10;
-    #5 f = 1;
-    #5 f = 0;
-
+    f = 10;
+    #5 reset = 1;
+    #5 reset = 0;
+    #30 f = 10;
+    #10 f = 1;
+    #10 f = 0;
     //w = 25;
   end
 
