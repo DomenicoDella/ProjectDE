@@ -1,9 +1,10 @@
-module decode (input logic [7:0] inst_reg,
+module decode (input logic clk1, clk2, clk3, clk4,
+  input logic [7:0] inst_reg,
+  output logic d, switch_a_m, writeEn,
   output  logic [2:0] bit_number,
-  output logic [3:0] inst,
-  output logic d, switch_a_m);
+  output logic [3:0] inst);
 
-  always @ ( inst_reg ) begin
+  always @ ( inst_reg or clk1 or clk2 or clk3 or clk4) begin
     if (inst_reg [7:6] == 2'b00) begin //byte oriented operations
       d <= inst_reg[1]; //define destination
       switch_a_m <= 1; //enable f on alu_mux
@@ -50,10 +51,19 @@ module decode (input logic [7:0] inst_reg,
       4'b110x: inst <= 3; //SUBWL
       4'b111x: inst <= 2; //ADDWL
       default: inst <= 1;
-    endcase
+      endcase
 
-  end else if (inst_reg [7:6] == 2'b10) begin
+    end else if (inst_reg [7:6] == 2'b10) begin
+
+    end
+
+    if (clk3 == 1) begin
+      writeEn <= 1;
+    end else begin
+      writeEn <= 0;
+    end
 
   end
-end
+
+
 endmodule //decode

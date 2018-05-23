@@ -36,7 +36,7 @@ module clocks (input logic clk, reset,
   end
 endmodule // clocks
 
-module testbench ();
+/*module testbench ();
   logic clk, clk1, clk2, clk3, clk4, reset;
   logic [1:0] counter;
 
@@ -58,4 +58,4 @@ module testbench ();
   initial begin
     #250 $finish;
   end
-endmodule //testbench
+endmodule //testbench*/

@@ -6,6 +6,7 @@
 //Se deben incluir todos los modulos
 //El orden de los modulos no importa
 //-----------------------------------------------------
+`include "clocks.sv" //
 `include "program_counter.sv" //program_counter
 `include "testbench.sv" //testbench
 `include "alu.sv" //alu
@@ -13,4 +14,4 @@
 `include "decode.sv" //decode
 `include "alu_mux.sv" //alu mux in b
 `include "inst_reg.sv" //inst reg
-`include "rom.sv" //read only memory 
+`include "rom.sv" //read only memory
