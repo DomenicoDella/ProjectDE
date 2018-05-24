@@ -29,13 +29,13 @@ module testbench ();
   data_reg u9 (.reset(reset), .clk(clk2), .data(data_bus), .f(in_mux), .writeEn(writeEn));
   ram u8 (.clk1(clk1), .clk2(clk2), .clk3(clk3), .clk4(clk4), .address_r(address), .act_ram(act_ram), .writeEn(writeEn),
   .data(data_bus));
-  buffer_alu u10 (.clk3(clk3), .ansf(ans), .data_bus(data_bus));
+  buffer_alu u10 (.clk3(clk3), .clk4(clk4), .ansf(ans), .data_bus(data_bus));
 
 
   initial begin
     $display("\n\t\ttimer  \treset \tcounter \tinst \t  b \t  w \t  ans \t d \t data_bus");
     $monitor("%d \t%b \t%d \t\t%b \t%d \t%d \t%d \t%b \t%d \t%b", $time,
-    reset, counter, inst, b, w, ans, d, writeEn, clk2);
+    reset, counter, inst, b, w, ans, clk2, in_mux, opcode);
 
     clk = 0;
     reset = 0;
