@@ -1,9 +1,9 @@
-module alu (input logic reset,
+module alu (input logic reset, writeEn, clk2,
   input logic [2:0] bit_number,
   input logic [3:0] inst,
   input logic [7:0] b, a,
   output logic carry,
-  output logic [7:0] ansf);
+  output tri [7:0] ansf);
 
   logic [8:0] ans;
   logic [7:0] set;

@@ -1,11 +1,12 @@
 module decode (input logic clk1, clk2, clk3, clk4,
   input logic [7:0] inst_reg,
-  output logic d, switch_a_m, writeEn,
+  output logic d, switch_a_m, writeEn, act_ram,
   output  logic [2:0] bit_number,
   output logic [3:0] inst);
 
   always @ ( inst_reg or clk1 or clk2 or clk3 or clk4) begin
     if (inst_reg [7:6] == 2'b00) begin //byte oriented operations
+      act_ram <= 1;
       d <= inst_reg[1]; //define destination
       switch_a_m <= 1; //enable f on alu_mux
       case (inst_reg[5:2])
@@ -29,6 +30,7 @@ module decode (input logic clk1, clk2, clk3, clk4,
       endcase
 
     end else if (inst_reg [7:6] == 2'b01) begin //bit oriented operations
+      act_ram <= 1;
       d <= 1; //define destination as f
       switch_a_m <= 1; //enable f on alu_mux
       bit_number = inst_reg [3:1];
@@ -41,6 +43,7 @@ module decode (input logic clk1, clk2, clk3, clk4,
       endcase
 
     end else if (inst_reg [7:6] == 2'b11) begin  //literal operations
+      act_ram <= 0;
       d <= 0; //define destination as w
       switch_a_m <= 0; //enable k on alu_mux
       casex (inst_reg[5:2])
@@ -57,7 +60,7 @@ module decode (input logic clk1, clk2, clk3, clk4,
 
     end
 
-    if (clk3 == 1) begin
+    if (clk3 == 1 || clk4 == 1) begin
       writeEn <= 1;
     end else begin
       writeEn <= 0;
