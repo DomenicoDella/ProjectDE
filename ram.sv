@@ -1,5 +1,5 @@
 module ram #(parameter N = 68, M = 8, A=7)//escribir, leer, alta impedancia
-  (input logic clk2,clk3, clk4, clk1, writeEn,act_ram,
+  (input logic clk2,clk3, clk4, clk1, writeEn,act_ram, d,
   input logic [A-1:0] address_r,
   inout  [M-1:0] data);
   //reg outEnable_read;
@@ -12,8 +12,8 @@ module ram #(parameter N = 68, M = 8, A=7)//escribir, leer, alta impedancia
 
 
   //escribir la memoria
-  always @(writeEn or address_r or act_ram or data) begin
-    if (writeEn && act_ram) begin
+  always @(writeEn or address_r or act_ram or data or d) begin
+    if (writeEn && act_ram && d) begin
     memoria [address_r] <= data;
   end
 end

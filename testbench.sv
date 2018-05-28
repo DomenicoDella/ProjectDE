@@ -26,16 +26,15 @@ module testbench ();
   rom u6 (.counter(counter), .opcode(opcode));
   clocks u7 (.clk(clk), .reset(reset), .clk1(clk1), .clk2(clk2),
   .clk3(clk3), .clk4(clk4));
-  data_reg u9 (.reset(reset), .clk(clk2), .data(data_bus), .f(in_mux), .writeEn(writeEn));
-  ram u8 (.clk1(clk1), .clk2(clk2), .clk3(clk3), .clk4(clk4), .address_r(address), .act_ram(act_ram), .writeEn(writeEn),
+  data_reg u9 (.reset(reset), .clk(clk4), .data(data_bus), .f(in_mux), .writeEn(writeEn));
+  ram u8 (.d(d), .clk4(clk4), .address_r(address), .act_ram(act_ram), .writeEn(writeEn),
   .data(data_bus));
   buffer_alu u10 (.clk3(clk3), .clk4(clk4), .ansf(ans), .data_bus(data_bus));
 
 
   initial begin
-    $display("\n\t\ttimer  \treset \tcounter \tinst \t  b \t  w \t  ans \t d \t data_bus");
-    $monitor("%d \t%b \t%d \t\t%b \t%d \t%d \t%d \t%b \t%d \t%b", $time,
-    reset, counter, inst, b, w, ans, clk2, in_mux, opcode);
+    $display("\nq1 \tq2 \tq3 \tq4 \topcode \t\t\tinst \tans \t\tdata_bus \tin_mux \t\tb \tw \t\tact_ram \twriteEn");
+    $monitor("%b \t%b \t%b \t%b \t%b%b \t%b \t%b \t%b \t%b \t%b \t%b \t%b", clk1, clk2, clk3, clk4, inst_reg, address, inst, ans, data_bus, in_mux, b, w, act_ram, writeEn);
 
     clk = 0;
     reset = 0;
