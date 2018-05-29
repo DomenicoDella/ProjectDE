@@ -16,7 +16,7 @@ module testbench ();
   pcounter u0 (.clk(clk1), .reset(reset), .counter(counter));
   alu u1 (.inst(inst), .reset(reset), .carry(carry), .ansf(ans),
   .b(b), .a(w), .bit_number(bit_number), .writeEn(writeEn), .clk2(clk2));
-  w_reg u2 (.reset(reset), .clk(clk4), .w(w), .ans(ans), .d(d));
+  w_reg u2 (.reset(reset), .clk(clk3), .w(w), .ans(ans), .d(d));
   decode u3(.inst_reg(inst_reg), .d(d), .inst(inst), .bit_number(bit_number),
   .switch_a_m(switch_a_m), .clk1(clk1), .clk2(clk2), .clk3(clk3),
   .clk4(clk4), .writeEn(writeEn), .act_ram(act_ram));
@@ -26,7 +26,7 @@ module testbench ();
   rom u6 (.counter(counter), .opcode(opcode));
   clocks u7 (.clk(clk), .reset(reset), .clk1(clk1), .clk2(clk2),
   .clk3(clk3), .clk4(clk4));
-  data_reg u9 (.reset(reset), .clk(clk4), .data(data_bus), .f(in_mux), .writeEn(writeEn));
+  data_reg u9 (.reset(reset), .clk(clk2), .data(data_bus), .f(in_mux), .writeEn(writeEn));
   ram u8 (.d(d), .clk4(clk4), .address_r(address), .act_ram(act_ram), .writeEn(writeEn),
   .data(data_bus));
   buffer_alu u10 (.clk3(clk3), .clk4(clk4), .ansf(ans), .data_bus(data_bus));

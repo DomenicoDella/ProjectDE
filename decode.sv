@@ -60,7 +60,7 @@ module decode (input logic clk1, clk2, clk3, clk4,
 
     end
 
-    if (clk3 == 1 || clk4 == 1) begin
+    if (clk3 == 1) begin
       writeEn = 1;
     end else begin
       writeEn = 0;
