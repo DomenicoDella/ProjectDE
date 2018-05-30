@@ -9,7 +9,7 @@ module pic (input wire clk, reset,
   output wire [13:0] opcode);
 
   pcounter u0 (.clk(clk1), .reset(reset), .counter(counter), .read_direction(read_direction),
-  .direction(data_bus), .clk3(clk3));
+  .direction(ans), .clk3(clk3));
   alu u1 (.inst(inst), .reset(reset), .carry(carry), .ansf(ans),
   .b(b), .a(w), .bit_number(bit_number), .writeEn(writeEn), .clk2(clk2));
   w_reg u2 (.reset(reset), .clk(clk3), .w(w), .ans(ans), .d(d));

@@ -21,7 +21,7 @@ module testbench ();
 
   initial begin
     $display("\nq1 \tq2 \tq3 \tq4 \topcode \t\t\tinst \tans \t\tdata_bus \t\tb \t\tw \t\tpc \t\tread_d");
-    $monitor("%b \t%b \t%b \t%b \t%b%b \t%b \t%b \t%b \t%b \t%b \t%b \t%b", clk1, clk2, clk3, clk4, inst_reg, address, inst, ans, data_bus, b, w, counter, read_direction);
+    $monitor("%b \t%b \t%b \t%b \t%b%b \t%b \t%b \t%b \t%b \t%b \t%d \t%b", clk1, clk2, clk3, clk4, inst_reg, address, inst, ans, data_bus, b, w, counter, read_direction);
 
     clk = 0;
     reset = 0;
