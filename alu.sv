@@ -2,7 +2,7 @@ module alu (input logic reset, writeEn, clk2,
   input logic [2:0] bit_number,
   input logic [3:0] inst,
   input logic [7:0] b, a,
-  output logic carry,
+  output logic carry, z,
   output tri [7:0] ansf);
 
   logic [8:0] ans;
@@ -43,6 +43,7 @@ module alu (input logic reset, writeEn, clk2,
       default: ans <= ans;
     endcase
   end
+  assign z = (ans == 8'b00000000) ? 1 : 0;
   assign ansf = ans;
   assign carry = ans[8];
 endmodule //alu

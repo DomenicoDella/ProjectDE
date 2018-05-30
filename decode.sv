@@ -67,6 +67,7 @@ module decode (input logic clk1, clk2, clk3, clk4,
       read_direction = 1; //activo la lectura del pc
       case (inst_reg[5])
         1: inst <= 0;
+        0: inst <= 0;
         default: inst <= inst;
       endcase
     end
