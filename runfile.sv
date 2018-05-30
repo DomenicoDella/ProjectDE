@@ -18,3 +18,4 @@
 `include "rom.sv" //read only memory
 `include "ram.sv" //random acces memory
 `include "data_reg.sv" //data reg
+`include "pic.sv" //
