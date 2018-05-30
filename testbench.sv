@@ -1,20 +1,20 @@
 module testbench ();
-  logic clk, reset, carry;
+  logic clk, reset;
 
 
   tri writeEn;
-  wire d, switch_a_m, act_ram, read_direction;
+  wire d, switch_a_m, act_ram, read_direction, carry;
   wire [3:0] inst;
   wire [2:0] bit_number;
   wire [6:0] address;
   wire [7:0] w, b, ans, inst_reg, k, in_mux, data_bus, direction;
-  wire [10:0] counter;
+  wire [7:0] counter;
   wire [13:0] opcode;
 
 
 
   pcounter u0 (.clk(clk1), .reset(reset), .counter(counter), .read_direction(read_direction),
-  .direction(data_bus));
+  .direction(data_bus), .clk3(clk3));
   alu u1 (.inst(inst), .reset(reset), .carry(carry), .ansf(ans),
   .b(b), .a(w), .bit_number(bit_number), .writeEn(writeEn), .clk2(clk2));
   w_reg u2 (.reset(reset), .clk(clk3), .w(w), .ans(ans), .d(d));
@@ -34,8 +34,8 @@ module testbench ();
 
 
   initial begin
-    $display("\nq1 \tq2 \tq3 \tq4 \topcode \t\t\tinst \tans \t\tdata_bus \tin_mux \t\tb \tw \t\tact_ram \twriteEn");
-    $monitor("%b \t%b \t%b \t%b \t%b%b \t%b \t%b \t%b \t%b \t%b \t%b", clk1, clk2, clk3, clk4, inst_reg, address, inst, ans, data_bus, in_mux, b, w, counter);
+    $display("\nq1 \tq2 \tq3 \tq4 \topcode \t\t\tinst \tans \t\tdata_bus \t\tb \t\tw \t\tpc \t\tread_d");
+    $monitor("%b \t%b \t%b \t%b \t%b%b \t%b \t%b \t%b \t%b \t%b \t%b \t%b", clk1, clk2, clk3, clk4, inst_reg, address, inst, ans, data_bus, b, w, counter, read_direction);
 
     clk = 0;
     reset = 0;

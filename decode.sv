@@ -64,7 +64,7 @@ module decode (input logic clk1, clk2, clk3, clk4,
       d <= 1;
       act_ram <= 0;
       switch_a_m <= 0; //enable k on alu_mux
-      read_direction <= 1; //activo la lectura del pc
+      read_direction = 1; //activo la lectura del pc
       case (inst_reg[5])
         1: inst <= 0;
         default: inst <= inst;
